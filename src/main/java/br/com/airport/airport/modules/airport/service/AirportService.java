@@ -28,4 +28,19 @@ public class AirportService {
             return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
+
+    public ResponseEntity<?> getAirport(Integer id) {
+        try {
+            var airport = this.airportRepository.findById(id)
+            .orElseThrow(
+                () -> {
+                    throw new RuntimeException("Aeroporto não encontrado");
+                }
+            );
+
+            return ResponseEntity.ok().body(airport);
+        } catch(Exception ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
 }
