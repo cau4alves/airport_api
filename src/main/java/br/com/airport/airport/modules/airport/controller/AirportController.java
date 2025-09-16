@@ -2,6 +2,8 @@ package br.com.airport.airport.modules.airport.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,5 +22,10 @@ public class AirportController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody AirportModel airportModel) {
         return this.airportService.createAirport(airportModel);
+    }
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<?> getAirport(@PathVariable Integer id) {
+        return this.airportService.getAirport(id);
     }
 }
